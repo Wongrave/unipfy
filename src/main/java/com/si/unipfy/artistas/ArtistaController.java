@@ -1,4 +1,4 @@
-package com.si.unipfy.musicas;
+package com.si.unipfy.artistas;
 
 import java.util.List;
 
@@ -12,29 +12,20 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 
 @RestController // informa que é um controlador que receberá requisições de outra aplicacao
-@RequestMapping("/musicas") // informa o endereço URL para acessar as músicas.
+@RequestMapping("/artistas") // informa o endereço URL para acessar as músicas.
 @AllArgsConstructor
-public class MusicaController {
-	
+public class ArtistaController {
+
 	@Autowired
-    MusicaRepository repository;
+    ArtistaRepository repository;
 
     @GetMapping("/returnAll")
-    List<Musica> allMusicas(){
+    List<Artista> allArtistas(){
         return repository.findAll();
     }
     
     @PostMapping("/new")
-    Musica newMusica(@RequestBody Musica musica) {
-    	return repository.save(musica);
+    Artista newArtista(@RequestBody Artista artista) {
+    	return repository.save(artista);
     }
-
-    @RequestMapping("/home")
-    String home(){
-        return "<h1>Hello world</h1>";
-    }
-
 }
-
-
-

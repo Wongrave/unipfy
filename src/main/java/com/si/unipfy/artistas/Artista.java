@@ -1,16 +1,17 @@
-package com.si.unipfy.musicas;
+package com.si.unipfy.artistas;
 
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.si.unipfy.artistas.Artista;
+import com.si.unipfy.musicas.Musica;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,37 +22,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Gera um construtor sem parâmetros para esse objeto
 @AllArgsConstructor // Gera um coonstrutor com todos os parâmetros para esse objeto
 @Data // Gera os principais métodos utilizados por uma classe de dados (get, set, etc)
-@Table(name = "musica_01")
-public class Musica {
+@Table(name = "artista_02")
+public class Artista {
 
-    @Id // Indica que é uma primary key de identificacao
+	@Id // Indica que é uma primary key de identificacao
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Identifica esse item como auto-increment
-    @Column(name = "id_01") // Indica a coluna da tabela que faz referêcia ao item
+    @Column(name = "id_02") // Indica a coluna da tabela que faz referêcia ao item
     private Long id;
 
-    @Column(name = "nome_01")
+    @Column(name = "nome_02")
     private String nome;
-
-    @Column(name = "duracao_01")
-    private String duracao;
-
-    @Column(name = "genero_01")
-    private String genero;
     
-    @ManyToOne
-    @JoinColumn(name = "id_02")
-    private Artista artista;
-
-    public Musica(long l, String s, String s1, long l1, String s2) {
-        id = 1L;
-        nome = s;
-        duracao = s1;
-        genero = s2;
-        
-    }
-
-	public Musica() {
-		// TODO Auto-generated constructor stub
-	}
-    
+    @OneToMany(mappedBy = "artista", targetEntity = Musica.class, fetch = FetchType.LAZY)
+    private List<Musica> musicas;
+	
 }
