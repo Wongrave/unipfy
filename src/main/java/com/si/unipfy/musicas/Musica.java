@@ -49,9 +49,5 @@ public class Musica {
         genero = s2;
         
     }
-
-	public Musica() {
-		// TODO Auto-generated constructor stub
-	}
     
 }

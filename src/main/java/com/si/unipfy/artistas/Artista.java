@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.si.unipfy.musicas.Musica;
 
 import lombok.AllArgsConstructor;
@@ -33,6 +34,10 @@ public class Artista {
     @Column(name = "nome_02")
     private String nome;
     
+    @Column(name = "imagem_02")
+    private String imagem;
+    
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "artista", targetEntity = Musica.class, fetch = FetchType.LAZY)
     private List<Musica> musicas;
 	
